@@ -1,1 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Countdown</title>
+    <style>
+      body {
+        font-family: 'Segoe UI', sans-serif;
+        background: #fff;
+        color: #11294a;
+        text-align: center;
+        padding: 2em;
+        margin: 0;
+      }
+      #countdown {
+        font-size: 2em;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="countdown"></div>
 
+    <script>
+      // August 17, 2025 at 9:00 PM EDT = August 18, 2025 at 1:00 AM UTC
+      const targetDate = new Date(Date.UTC(2025, 7, 18, 1, 0, 0));
+      const el = document.getElementById("countdown");
+
+      function updateCountdown() {
+        const now = new Date();
+        const diff = targetDate - now;
+
+        if (diff <= 0) {
+          el.textContent = "Time's up!";
+          return;
+        }
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / (1000 * 60)) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
+
+        el.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+      }
+
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+    </script>
+  </body>
+</html>
