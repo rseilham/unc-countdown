@@ -13,32 +13,48 @@
         padding: 2em 0;
       }
 
+      .countdown-wrapper {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 0 1em;
+      }
+
       .countdown-container {
         display: flex;
-        justify-content: center;
-        gap: 1.5em;
+        justify-content: space-between;
+        gap: 0.5em;
       }
 
       .time-block {
         background: #11294a;
         color: white;
-        padding: 0.5em 1em;
+        padding: 0.5em 0;
         border-radius: 8px;
-        width: 80px;
+        flex: 1;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       }
 
       .time-number {
-        font-size: 2.5em;
+        font-size: 1.75em;
         font-weight: bold;
         display: block;
         margin-bottom: 0.2em;
       }
 
       .time-label {
-        font-size: 0.8em;
+        font-size: 0.7em;
         color: #FFD100;
         letter-spacing: 1px;
+      }
+
+      @media (max-width: 360px) {
+        .time-number {
+          font-size: 1.5em;
+        }
+
+        .time-label {
+          font-size: 0.6em;
+        }
       }
     </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -46,22 +62,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
   </head>
   <body>
-    <div class="countdown-container">
-      <div class="time-block">
-        <span class="time-number" id="days">00</span>
-        <div class="time-label">DAYS</div>
-      </div>
-      <div class="time-block">
-        <span class="time-number" id="hours">00</span>
-        <div class="time-label">HOURS</div>
-      </div>
-      <div class="time-block">
-        <span class="time-number" id="minutes">00</span>
-        <div class="time-label">MINUTES</div>
-      </div>
-      <div class="time-block">
-        <span class="time-number" id="seconds">00</span>
-        <div class="time-label">SECONDS</div>
+    <div class="countdown-wrapper">
+      <div class="countdown-container">
+        <div class="time-block">
+          <span class="time-number" id="days">00</span>
+          <div class="time-label">DAYS</div>
+        </div>
+        <div class="time-block">
+          <span class="time-number" id="hours">00</span>
+          <div class="time-label">HOURS</div>
+        </div>
+        <div class="time-block">
+          <span class="time-number" id="minutes">00</span>
+          <div class="time-label">MINUTES</div>
+        </div>
+        <div class="time-block">
+          <span class="time-number" id="seconds">00</span>
+          <div class="time-label">SECONDS</div>
+        </div>
       </div>
     </div>
 
