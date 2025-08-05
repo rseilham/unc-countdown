@@ -5,36 +5,76 @@
     <title>Countdown</title>
     <style>
       body {
-        font-family: "Open Sans";
+        font-family: "Open Sans", sans-serif;
         background: #9EC3E7;
         color: #11294a;
         text-align: center;
-        padding: 0em;
         margin: 0;
+        padding: 2em 0;
       }
-      #countdown {
-        font-size: 1.5em;
+
+      .countdown-container {
+        display: flex;
+        justify-content: center;
+        gap: 1.5em;
+      }
+
+      .time-block {
+        background: #11294a;
+        color: white;
+        padding: 0.5em 1em;
+        border-radius: 8px;
+        width: 80px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      .time-number {
+        font-size: 2.5em;
         font-weight: bold;
+        display: block;
+        margin-bottom: 0.2em;
+      }
+
+      .time-label {
+        font-size: 0.8em;
+        color: #FFD100;
+        letter-spacing: 1px;
       }
     </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
   </head>
   <body>
-    <div id="countdown"></div>
+    <div class="countdown-container">
+      <div class="time-block">
+        <span class="time-number" id="days">00</span>
+        <div class="time-label">DAYS</div>
+      </div>
+      <div class="time-block">
+        <span class="time-number" id="hours">00</span>
+        <div class="time-label">HOURS</div>
+      </div>
+      <div class="time-block">
+        <span class="time-number" id="minutes">00</span>
+        <div class="time-label">MINUTES</div>
+      </div>
+      <div class="time-block">
+        <span class="time-number" id="seconds">00</span>
+        <div class="time-label">SECONDS</div>
+      </div>
+    </div>
 
     <script>
       // August 17, 2025 at 9:00 PM EDT = August 18, 2025 at 1:00 AM UTC
       const targetDate = new Date(Date.UTC(2025, 7, 18, 1, 0, 0));
-      const el = document.getElementById("countdown");
 
       function updateCountdown() {
         const now = new Date();
         const diff = targetDate - now;
 
         if (diff <= 0) {
-          el.textContent = "Time's up!";
+          document.querySelectorAll(".time-number").forEach(el => el.textContent = "00");
           return;
         }
 
@@ -43,7 +83,10 @@
         const minutes = Math.floor((diff / (1000 * 60)) % 60);
         const seconds = Math.floor((diff / 1000) % 60);
 
-        el.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        document.getElementById("days").textContent = String(days).padStart(2, '0');
+        document.getElementById("hours").textContent = String(hours).padStart(2, '0');
+        document.getElementById("minutes").textContent = String(minutes).padStart(2, '0');
+        document.getElementById("seconds").textContent = String(seconds).padStart(2, '0');
       }
 
       updateCountdown();
