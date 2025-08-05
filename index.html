@@ -32,8 +32,6 @@
         border-radius: 12px;
         flex: 1;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-
-        /* Center content */
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -64,7 +62,6 @@
       }
     </style>
 
-    <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
@@ -72,20 +69,20 @@
 
   <body>
     <div class="countdown-wrapper">
-      <div class="countdown-container">
-        <div class="time-block">
+      <div class="countdown-container" id="countdown-container">
+        <div class="time-block" id="block-days">
           <span class="time-number" id="days">00</span>
           <div class="time-label">DAYS</div>
         </div>
-        <div class="time-block">
+        <div class="time-block" id="block-hours">
           <span class="time-number" id="hours">00</span>
           <div class="time-label">HOURS</div>
         </div>
-        <div class="time-block">
+        <div class="time-block" id="block-minutes">
           <span class="time-number" id="minutes">00</span>
           <div class="time-label">MINUTES</div>
         </div>
-        <div class="time-block">
+        <div class="time-block" id="block-seconds">
           <span class="time-number" id="seconds">00</span>
           <div class="time-label">SECONDS</div>
         </div>
@@ -110,10 +107,27 @@
         const minutes = Math.floor((diff / (1000 * 60)) % 60);
         const seconds = Math.floor((diff / 1000) % 60);
 
-        document.getElementById("days").textContent = String(days).padStart(2, '0');
-        document.getElementById("hours").textContent = String(hours).padStart(2, '0');
+        // Always show minutes and seconds
         document.getElementById("minutes").textContent = String(minutes).padStart(2, '0');
         document.getElementById("seconds").textContent = String(seconds).padStart(2, '0');
+
+        // Hide/show days
+        const blockDays = document.getElementById("block-days");
+        if (days === 0) {
+          blockDays.style.display = "none";
+        } else {
+          blockDays.style.display = "flex";
+          document.getElementById("days").textContent = String(days).padStart(2, '0');
+        }
+
+        // Hide/show hours (only hide if hours === 0 AND days === 0)
+        const blockHours = document.getElementById("block-hours");
+        if (days === 0 && hours === 0) {
+          blockHours.style.display = "none";
+        } else {
+          blockHours.style.display = "flex";
+          document.getElementById("hours").textContent = String(hours).padStart(2, '0');
+        }
       }
 
       updateCountdown();
